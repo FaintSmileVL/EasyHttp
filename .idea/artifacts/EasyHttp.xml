@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="EasyHttp">
+    <output-path>$PROJECT_DIR$/out/artifacts/EasyHttp</output-path>
+    <root id="root">
+      <element id="archive" name="EasyHttp.jar">
+        <element id="module-output" name="EasyHttp" />
+      </element>
+      <element id="library" level="project" name="google.code.gson" />
+      <element id="library" level="project" name="projectlombok.lombok" />
+    </root>
+  </artifact>
+</component>
