@@ -3,7 +3,6 @@ package ru.manager;
 import com.google.gson.Gson;
 import lombok.Getter;
 import ru.factory.RequestFactory;
-import ru.request.IMessageResponse;
 import ru.request.IRequestHandler;
 
 import java.net.http.HttpClient;
@@ -29,7 +28,7 @@ public class RequestManager {
      * @param address
      */
     public void setExternalAddress(String address) {
-        externalApiServerAddress.replace("localhost", address);
+        externalApiServerAddress = externalApiServerAddress.replace("localhost", address);
     }
 
     /**
@@ -37,7 +36,7 @@ public class RequestManager {
      * @param port
      */
     public void setPort(String port) {
-        externalApiServerAddress.replace("port", port);
+        externalApiServerAddress = externalApiServerAddress.replace("port", port);
     }
 
     /**
@@ -65,12 +64,12 @@ public class RequestManager {
      * @param handlerName
      * @return
      */
-    public IMessageResponse request(String jsonBody, String handlerName) {
+    public <T> T request(String jsonBody, String handlerName, Class<T> clazz) {
         var request = RequestFactory.create(jsonBody, handlerName);
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
-                return gson.fromJson(response.body(), IMessageResponse.class);
+                return gson.fromJson(response.body(), clazz);
             }
         } catch (Exception e) {
             e.printStackTrace();
