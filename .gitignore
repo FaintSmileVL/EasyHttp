@@ -27,3 +27,14 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+/build/
+/bin/
+*.zip
+*.log
+
+/out/
+/.idea/
+/java/META-INF/
+/battleclub.iml
+/dist/dist.iml
